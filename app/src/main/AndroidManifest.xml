@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name="com.example.cometchatsampleappkotlin.Application"
+        android:name="com.cometchat.kotlinsampleapp.Application"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -20,22 +20,22 @@
         android:theme="@style/Base.Theme.CometChatSampleAppKotlin"
         tools:targetApi="31">
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.cometchat.kotlinsampleapp.activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.HomeActivity"
+            android:name="com.cometchat.kotlinsampleapp.activity.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.CreateUserActivity"
+            android:name="com.cometchat.kotlinsampleapp.activity.CreateUserActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.ComponentLaunchActivity"
+            android:name="com.cometchat.kotlinsampleapp.activity.ComponentLaunchActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.ComponentListActivity"
+            android:name="com.cometchat.kotlinsampleapp.activity.ComponentListActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.cometchat.kotlinsampleapp.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

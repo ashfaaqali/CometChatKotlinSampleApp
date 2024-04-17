@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.cometchatsampleappkotlin"
+    namespace = "com.cometchat.kotlinsampleapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.cometchatsampleappkotlin"
+        applicationId = "com.cometchat.kotlinsampleapp"
         minSdk = 21
         targetSdk = 34
         versionCode = 1
@@ -17,7 +17,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         applicationVariants.all {
-            this.mergedFlavor.manifestPlaceholders["file_provider"] = "com.example.cometchatsampleappkotlin"
+            this.mergedFlavor.manifestPlaceholders["file_provider"] = "com.cometchat.kotlinsampleapp"
         }
     }
 
