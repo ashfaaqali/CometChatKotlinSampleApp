@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
@@ -20,10 +19,12 @@ import com.cometchat.kotlinsampleapp.AppUtils.changeTextColorToWhite
 import com.cometchat.kotlinsampleapp.AppUtils.fetchDefaultObjects
 import com.cometchat.kotlinsampleapp.AppUtils.isNightMode
 import com.cometchat.kotlinsampleapp.R
+import com.cometchat.kotlinsampleapp.databinding.ActivityCreateUserBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 
 class CreateUserActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityCreateUserBinding
     private lateinit var uid: TextInputEditText
     private lateinit var name: TextInputEditText
     private lateinit var createUserBtn: AppCompatButton
@@ -31,15 +32,16 @@ class CreateUserActivity : AppCompatActivity() {
     private lateinit var parentView: RelativeLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_user)
+        binding = ActivityCreateUserBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        parentView = findViewById<RelativeLayout>(R.id.parent_view)
-        progressBar = findViewById<ProgressBar>(R.id.createUserPb)
-        uid = findViewById<TextInputEditText>(R.id.etUID)
-        name = findViewById<TextInputEditText>(R.id.etName)
-        createUserBtn = findViewById<AppCompatButton>(R.id.createUserBtn)
-        createUserBtn.setTextColor(getResources().getColor(R.color.white))
-        createUserBtn.setOnClickListener(View.OnClickListener {
+        parentView = binding.parentView
+        progressBar = binding.createUserPb
+        uid = binding.etUID
+        name = binding.etName
+        createUserBtn = binding.createUserBtn
+        createUserBtn.setTextColor(ContextCompat.getColor(this, R.color.white))
+        createUserBtn.setOnClickListener {
             if (uid.getText().toString()
                     .isEmpty()
             ) uid.error = getResources().getString(R.string.fill_this_field) else if (name.getText()
@@ -67,7 +69,7 @@ class CreateUserActivity : AppCompatActivity() {
                         }
                     })
             }
-        })
+        }
         setUpUI()
     }
 
@@ -100,10 +102,10 @@ class CreateUserActivity : AppCompatActivity() {
 
     private fun setUpUI() {
         if (isNightMode(this)) {
-            changeTextColorToWhite(this, findViewById<TextView>(R.id.tvTitle))
-            changeTextColorToWhite(this, findViewById<TextView>(R.id.tvDes2))
-            uid.setTextColor(getResources().getColor(R.color.white))
-            name.setTextColor(getResources().getColor(R.color.white))
+            changeTextColorToWhite(this, binding.tvTitle)
+            changeTextColorToWhite(this, binding.tvDes2)
+            uid.setTextColor(ContextCompat.getColor(this, R.color.white))
+            name.setTextColor(ContextCompat.getColor(this, R.color.white))
             parentView.setBackgroundTintList(
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
@@ -113,9 +115,9 @@ class CreateUserActivity : AppCompatActivity() {
                 )
             )
         } else {
-            changeTextColorToBlack(this, findViewById<TextView>(R.id.tvTitle))
-            changeTextColorToBlack(this, findViewById<TextView>(R.id.tvDes2))
-            parentView.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.app_background)))
+            changeTextColorToBlack(this, binding.tvTitle)
+            changeTextColorToBlack(this, binding.tvDes2)
+            parentView.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.app_background)))
         }
     }
 }

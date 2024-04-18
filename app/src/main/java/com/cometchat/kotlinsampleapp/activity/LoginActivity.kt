@@ -9,7 +9,6 @@ import android.view.inputmethod.EditorInfo
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -22,22 +21,25 @@ import com.cometchat.kotlinsampleapp.AppUtils.changeTextColorToWhite
 import com.cometchat.kotlinsampleapp.AppUtils.fetchDefaultObjects
 import com.cometchat.kotlinsampleapp.AppUtils.isNightMode
 import com.cometchat.kotlinsampleapp.R
+import com.cometchat.kotlinsampleapp.databinding.ActivityLoginBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityLoginBinding
     private lateinit var inputLayout: TextInputLayout
     private lateinit var progressBar: ProgressBar
     private lateinit var uid: TextInputEditText
     private lateinit var parentView: RelativeLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        uid = findViewById(R.id.etUID)
-        progressBar = findViewById(R.id.loginProgress)
-        inputLayout = findViewById(R.id.inputUID)
-        parentView = findViewById(R.id.parent_view)
-        uid.setOnEditorActionListener(OnEditorActionListener { textView: TextView?, i: Int, keyEvent: KeyEvent? ->
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        uid = binding.etUID
+        progressBar = binding.loginProgress
+        inputLayout = binding.inputUID
+        parentView = binding.parentView
+        uid.setOnEditorActionListener { textView: TextView?, i: Int, keyEvent: KeyEvent? ->
             if (i == EditorInfo.IME_ACTION_DONE) {
                 if (uid.getText().toString().isEmpty()) {
                     uid.error = "Enter UID"
@@ -49,8 +51,8 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
             true
-        })
-        findViewById<View>(R.id.tvSignIn).setOnClickListener { view: View? ->
+        }
+        binding.tvSignIn.setOnClickListener {
             if (uid.text.toString().isEmpty()) {
                 uid.error = "Enter UID"
             } else {
@@ -78,15 +80,15 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
-    fun createUser(view: View?) {
+    fun createUser() {
         startActivity(Intent(this@LoginActivity, CreateUserActivity::class.java))
     }
 
     private fun setUpUI() {
         if (isNightMode(this)) {
-            changeTextColorToWhite(this, findViewById<TextView>(R.id.tvTitle))
-            changeTextColorToWhite(this, findViewById<TextView>(R.id.tvDes2))
-            inputLayout.editText!!.setTextColor(getResources().getColor(R.color.white))
+            changeTextColorToWhite(this, binding.tvTitle)
+            changeTextColorToWhite(this, binding.tvDes2)
+            inputLayout.editText!!.setTextColor(ContextCompat.getColor(this, R.color.white))
             parentView.setBackgroundTintList(
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
@@ -96,9 +98,9 @@ class LoginActivity : AppCompatActivity() {
                 )
             )
         } else {
-            changeTextColorToBlack(this, findViewById<TextView>(R.id.tvTitle))
-            changeTextColorToBlack(this, findViewById<TextView>(R.id.tvDes2))
-            parentView.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.app_background)))
+            changeTextColorToBlack(this, binding.tvTitle)
+            changeTextColorToBlack(this, binding.tvDes2)
+            parentView.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.app_background)))
         }
     }
 }

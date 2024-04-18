@@ -11,6 +11,7 @@ import com.cometchat.kotlinsampleapp.fragments.shared.views.BadgeCountFragment
 import com.cometchat.kotlinsampleapp.AppUtils
 import com.cometchat.kotlinsampleapp.fragments.calls.CallButtonFragment
 import com.cometchat.kotlinsampleapp.R
+import com.cometchat.kotlinsampleapp.databinding.ActivityComponentLaunchBinding
 import com.cometchat.kotlinsampleapp.fragments.shared.views.AudioBubbleFragment
 import com.cometchat.kotlinsampleapp.fragments.shared.views.FileBubbleFragment
 import com.cometchat.kotlinsampleapp.fragments.shared.views.VideoBubbleFragment
@@ -55,12 +56,14 @@ import com.cometchat.kotlinsampleapp.fragments.users.UsersFragment
 import com.cometchat.kotlinsampleapp.fragments.users.UsersWithMessagesFragment
 
 class ComponentLaunchActivity : AppCompatActivity() {
-    private var parentView: LinearLayout? = null
+    private lateinit var binding: ActivityComponentLaunchBinding
+    private lateinit var parentView: LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityComponentLaunchBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_component_launch)
         val id = intent.getIntExtra("component", 0)
-        parentView = findViewById(R.id.container)
+        parentView = binding.container
         setUpUI()
         when (id) {
             R.id.conversationWithMessages -> {
@@ -201,7 +204,7 @@ class ComponentLaunchActivity : AppCompatActivity() {
     private fun setUpUI() {
         if (AppUtils.isNightMode(this)) {
             Utils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.app_background_dark))
-            parentView!!.setBackgroundTintList(
+            parentView.setBackgroundTintList(
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         this,
@@ -210,8 +213,8 @@ class ComponentLaunchActivity : AppCompatActivity() {
                 )
             )
         } else {
-            Utils.setStatusBarColor(this, getResources().getColor(R.color.app_background))
-            parentView!!.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.app_background)))
+            Utils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.app_background))
+            parentView.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.app_background)))
         }
     }
 

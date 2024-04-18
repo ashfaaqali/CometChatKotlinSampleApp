@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -15,14 +14,18 @@ import com.cometchat.kotlinsampleapp.AppUtils.changeIconTintToWhite
 import com.cometchat.kotlinsampleapp.AppUtils.isNightMode
 import com.cometchat.kotlinsampleapp.R
 import com.cometchat.kotlinsampleapp.constants.StringConstants
+import com.cometchat.kotlinsampleapp.databinding.ActivityComponentListBinding
 
 class ComponentListActivity : AppCompatActivity() {
-    var parentView: LinearLayout? = null
+    private lateinit var binding: ActivityComponentListBinding
+    private lateinit var parentView: LinearLayout
+    private lateinit var title: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_component_list)
-        parentView = findViewById<LinearLayout>(R.id.parent_view)
-        val title = findViewById<TextView>(R.id.title)
+        binding = ActivityComponentListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        parentView = binding.parentView
+        title = binding.title
         setUpUI()
         if (intent != null) {
             title.text = intent.getStringExtra(StringConstants.MODULE)
@@ -52,288 +55,213 @@ class ComponentListActivity : AppCompatActivity() {
                 findViewById<View>(R.id.module_calls).visibility = View.VISIBLE
             }
         }
+
         //back
-        findViewById<View>(R.id.backIcon).setOnClickListener { view: View? -> onBackPressed() }
+        binding.backIcon.setOnClickListener { onBackPressed() }
 
         //chats
-        findViewById<View>(R.id.conversationWithMessages).setOnClickListener { view: View? ->
+        binding.conversationWithMessages.setOnClickListener {
             handleIntent(
                 R.id.conversationWithMessages
             )
         }
-        findViewById<View>(R.id.conversations).setOnClickListener { view: View? ->
+        binding.conversations.setOnClickListener {
             handleIntent(
                 R.id.conversations
             )
         }
-        findViewById<View>(R.id.contacts).setOnClickListener { view: View? ->
+        binding.contacts.setOnClickListener {
             handleIntent(
                 R.id.contacts
             )
         }
 
         //users
-        findViewById<View>(R.id.userWithMessages).setOnClickListener { view: View? ->
+        binding.userWithMessages.setOnClickListener {
             handleIntent(
                 R.id.userWithMessages
             )
         }
-        findViewById<View>(R.id.users).setOnClickListener { view: View? ->
+        binding.users.setOnClickListener {
             handleIntent(
                 R.id.users
             )
         }
-        findViewById<View>(R.id.user_details).setOnClickListener { view: View? ->
+        binding.userDetails.setOnClickListener {
             handleIntent(
                 R.id.user_details
             )
         }
 
         //groups
-        findViewById<View>(R.id.groupWithMessages).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.groupWithMessages
-            )
+        binding.groupWithMessages.setOnClickListener {
+            handleIntent(R.id.groupWithMessages)
         }
-        findViewById<View>(R.id.groups).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.groups
-            )
+        binding.groups.setOnClickListener {
+            handleIntent(R.id.groups)
         }
-        findViewById<View>(R.id.create_group).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.create_group
-            )
+        binding.createGroup.setOnClickListener {
+            handleIntent(R.id.create_group)
         }
-        findViewById<View>(R.id.join_protected_group).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.join_protected_group
-            )
+        binding.joinProtectedGroup.setOnClickListener {
+            handleIntent(R.id.join_protected_group)
         }
-        findViewById<View>(R.id.group_member).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.group_member
-            )
+        binding.groupMember.setOnClickListener {
+            handleIntent(R.id.group_member)
         }
-        findViewById<View>(R.id.add_member).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.add_member
-            )
+        binding.addMember.setOnClickListener {
+            handleIntent(R.id.add_member)
         }
-        findViewById<View>(R.id.transfer_ownership).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.transfer_ownership
-            )
+        binding.transferOwnership.setOnClickListener {
+            handleIntent(R.id.transfer_ownership)
         }
-        findViewById<View>(R.id.banned_members).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.banned_members
-            )
+        binding.bannedMembers.setOnClickListener {
+            handleIntent(R.id.banned_members)
         }
-        findViewById<View>(R.id.group_details).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.group_details
-            )
+        binding.groupDetails.setOnClickListener {
+            handleIntent(R.id.group_details)
         }
 
         //messages
-        findViewById<View>(R.id.messages).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.messages
-            )
+        binding.messages.setOnClickListener {
+            handleIntent(R.id.messages)
         }
-        findViewById<View>(R.id.messageList).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.messageList
-            )
+        binding.messageList.setOnClickListener {
+            handleIntent(R.id.messageList)
         }
-        findViewById<View>(R.id.messageHeader).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.messageHeader
-            )
+        binding.messageHeader.setOnClickListener {
+            handleIntent(R.id.messageHeader)
         }
-        findViewById<View>(R.id.messageComposer).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.messageComposer
-            )
+        binding.messageComposer.setOnClickListener {
+            handleIntent(R.id.messageComposer)
         }
-        findViewById<View>(R.id.messageInformation).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.messageInformation
-            )
+        binding.messageInformation.setOnClickListener {
+            handleIntent(R.id.messageInformation)
         }
 
         //calls
-        findViewById<View>(R.id.call_button).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.call_button
-            )
+        binding.callButton.setOnClickListener {
+            handleIntent(R.id.call_button)
         }
-        findViewById<View>(R.id.call_logs).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.call_logs
-            )
+        binding.callLogs.setOnClickListener {
+            handleIntent(R.id.call_logs)
         }
-        findViewById<View>(R.id.call_logs_details).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.call_logs_details
-            )
+        binding.callLogsDetails.setOnClickListener {
+            handleIntent(R.id.call_logs_details)
         }
-        findViewById<View>(R.id.call_logs_with_details).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.call_logs_with_details
-            )
+        binding.callLogsWithDetails.setOnClickListener {
+            handleIntent(R.id.call_logs_with_details)
         }
-        findViewById<View>(R.id.call_log_participants).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.call_log_participants
-            )
+        binding.callLogParticipants.setOnClickListener {
+            handleIntent(R.id.call_log_participants)
         }
-        findViewById<View>(R.id.call_log_recording).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.call_log_recording
-            )
+        binding.callLogRecording.setOnClickListener {
+            handleIntent(R.id.call_log_recording)
         }
-        findViewById<View>(R.id.call_log_history).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.call_log_history
-            )
+        binding.callLogHistory.setOnClickListener {
+            handleIntent(R.id.call_log_history)
         }
 
         //shared
-
         //views
-        findViewById<View>(R.id.avatar).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.avatar
-            )
+        binding.avatar.setOnClickListener {
+            handleIntent(R.id.avatar)
         }
-        findViewById<View>(R.id.badgeCount).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.badgeCount
-            )
+        binding.badgeCount.setOnClickListener {
+            handleIntent(R.id.badgeCount)
         }
-        findViewById<View>(R.id.messageReceipt).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.messageReceipt
-            )
+        binding.messageReceipt.setOnClickListener {
+            handleIntent(R.id.messageReceipt)
         }
-        findViewById<View>(R.id.statusIndicator).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.statusIndicator
-            )
+        binding.statusIndicator.setOnClickListener {
+            handleIntent(R.id.statusIndicator)
         }
-        findViewById<View>(R.id.list_item).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.list_item
-            )
+        binding.listItem.setOnClickListener {
+            handleIntent(R.id.list_item)
         }
-        findViewById<View>(R.id.text_bubble).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.text_bubble
-            )
+        binding.textBubble.setOnClickListener {
+            handleIntent(R.id.text_bubble)
         }
-        findViewById<View>(R.id.image_bubble).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.image_bubble
-            )
+        binding.imageBubble.setOnClickListener {
+            handleIntent(R.id.image_bubble)
         }
-        findViewById<View>(R.id.video_bubble).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.video_bubble
-            )
+        binding.videoBubble.setOnClickListener {
+            handleIntent(R.id.video_bubble)
         }
-        findViewById<View>(R.id.audio_bubble).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.audio_bubble
-            )
+        binding.audioBubble.setOnClickListener {
+            handleIntent(R.id.audio_bubble)
         }
-        findViewById<View>(R.id.files_bubble).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.files_bubble
-            )
+        binding.filesBubble.setOnClickListener {
+            handleIntent(R.id.files_bubble)
         }
-        findViewById<View>(R.id.form_bubble).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.form_bubble
-            )
+        binding.formBubble.setOnClickListener {
+            handleIntent(R.id.form_bubble)
         }
-        findViewById<View>(R.id.card_bubble).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.card_bubble
-            )
+        binding.cardBubble.setOnClickListener {
+            handleIntent(R.id.card_bubble)
         }
-        findViewById<View>(R.id.scheduler_bubble).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.scheduler_bubble
-            )
+        binding.schedulerBubble.setOnClickListener {
+            handleIntent(R.id.scheduler_bubble)
         }
-        findViewById<View>(R.id.media_recorder).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.media_recorder
-            )
+        binding.mediaRecorder.setOnClickListener {
+            handleIntent(R.id.media_recorder)
         }
 
         //resources
-        findViewById<View>(R.id.soundManager).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.soundManager
-            )
+        binding.soundManager.setOnClickListener {
+            handleIntent(R.id.soundManager)
         }
-        findViewById<View>(R.id.theme).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.theme
-            )
+        binding.theme.setOnClickListener {
+            handleIntent(R.id.theme)
         }
-        findViewById<View>(R.id.localize).setOnClickListener { view: View? ->
-            handleIntent(
-                R.id.localize
-            )
+        binding.localize.setOnClickListener {
+            handleIntent(R.id.localize)
         }
+
     }
 
     private fun setUpUI() {
         if (isNightMode(this)) {
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.backIcon))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_cwm))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_c))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_contacts))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_uwm))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_u))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_ud))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_gwm))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_g))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_cg))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_jp))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_gm))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_ad))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_to))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_bm))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_gd))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_message))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_message_header))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_message_list))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_message_composer))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_message_information))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_call_button))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_audio))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_translate))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_avatar))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_badge_count))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_message_receipt))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_status_indicator))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_text_bubble))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_image_bubble))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_video_bubble))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_audio_bubble))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_file_bubble))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_form_bubble))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_card_bubble))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_scheduler_bubble))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_mic))
-            changeIconTintToWhite(this, findViewById<ImageView>(R.id.image_list_item))
+            changeIconTintToWhite(this, binding.backIcon)
+            changeIconTintToWhite(this, binding.imageCwm)
+            changeIconTintToWhite(this, binding.imageC)
+            changeIconTintToWhite(this, binding.imageContacts)
+            changeIconTintToWhite(this, binding.imageUwm)
+            changeIconTintToWhite(this, binding.imageU)
+            changeIconTintToWhite(this, binding.imageUd)
+            changeIconTintToWhite(this, binding.imageGwm)
+            changeIconTintToWhite(this, binding.imageG)
+            changeIconTintToWhite(this, binding.imageCg)
+            changeIconTintToWhite(this, binding.imageJp)
+            changeIconTintToWhite(this, binding.imageGm)
+            changeIconTintToWhite(this, binding.imageAd)
+            changeIconTintToWhite(this, binding.imageTo)
+            changeIconTintToWhite(this, binding.imageBm)
+            changeIconTintToWhite(this, binding.imageGd)
+            changeIconTintToWhite(this, binding.imageMessage)
+            changeIconTintToWhite(this, binding.imageMessageHeader)
+            changeIconTintToWhite(this, binding.imageMessageList)
+            changeIconTintToWhite(this, binding.imageMessageComposer)
+            changeIconTintToWhite(this, binding.imageMessageInformation)
+            changeIconTintToWhite(this, binding.imageCallButton)
+            changeIconTintToWhite(this, binding.imageAudio)
+            changeIconTintToWhite(this, binding.imageTranslate)
+            changeIconTintToWhite(this, binding.imageAvatar)
+            changeIconTintToWhite(this, binding.imageBadgeCount)
+            changeIconTintToWhite(this, binding.imageMessageReceipt)
+            changeIconTintToWhite(this, binding.imageStatusIndicator)
+            changeIconTintToWhite(this, binding.imageTextBubble)
+            changeIconTintToWhite(this, binding.imageImageBubble)
+            changeIconTintToWhite(this, binding.imageVideoBubble)
+            changeIconTintToWhite(this, binding.imageAudioBubble)
+            changeIconTintToWhite(this, binding.imageFileBubble)
+            changeIconTintToWhite(this, binding.imageFormBubble)
+            changeIconTintToWhite(this, binding.imageCardBubble)
+            changeIconTintToWhite(this, binding.imageSchedulerBubble)
+            changeIconTintToWhite(this, binding.imageMic)
+            changeIconTintToWhite(this, binding.imageListItem)
             Utils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.app_background_dark))
-            parentView!!.setBackgroundTintList(
+            parentView.setBackgroundTintList(
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
                         this,
@@ -342,46 +270,53 @@ class ComponentListActivity : AppCompatActivity() {
                 )
             )
         } else {
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.backIcon))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_cwm))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_c))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_contacts))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_uwm))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_u))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_ud))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_gwm))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_g))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_cg))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_jp))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_gm))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_ad))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_to))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_bm))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_gd))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_message))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_message_header))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_message_list))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_message_composer))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_message_information))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_call_button))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_audio))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_translate))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_avatar))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_badge_count))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_message_receipt))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_status_indicator))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_text_bubble))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_image_bubble))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_video_bubble))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_audio_bubble))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_file_bubble))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_form_bubble))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_card_bubble))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_scheduler_bubble))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_mic))
-            changeIconTintToBlack(this, findViewById<ImageView>(R.id.image_list_item))
-            Utils.setStatusBarColor(this, getResources().getColor(R.color.app_background))
-            parentView!!.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.app_background)))
+            changeIconTintToBlack(this, binding.backIcon)
+            changeIconTintToBlack(this, binding.imageCwm)
+            changeIconTintToBlack(this, binding.imageC)
+            changeIconTintToBlack(this, binding.imageContacts)
+            changeIconTintToBlack(this, binding.imageUwm)
+            changeIconTintToBlack(this, binding.imageU)
+            changeIconTintToBlack(this, binding.imageUd)
+            changeIconTintToBlack(this, binding.imageGwm)
+            changeIconTintToBlack(this, binding.imageG)
+            changeIconTintToBlack(this, binding.imageCg)
+            changeIconTintToBlack(this, binding.imageJp)
+            changeIconTintToBlack(this, binding.imageGm)
+            changeIconTintToBlack(this, binding.imageAd)
+            changeIconTintToBlack(this, binding.imageTo)
+            changeIconTintToBlack(this, binding.imageBm)
+            changeIconTintToBlack(this, binding.imageGd)
+            changeIconTintToBlack(this, binding.imageMessage)
+            changeIconTintToBlack(this, binding.imageMessageHeader)
+            changeIconTintToBlack(this, binding.imageMessageList)
+            changeIconTintToBlack(this, binding.imageMessageComposer)
+            changeIconTintToBlack(this, binding.imageMessageInformation)
+            changeIconTintToBlack(this, binding.imageCallButton)
+            changeIconTintToBlack(this, binding.imageAudio)
+            changeIconTintToBlack(this, binding.imageTranslate)
+            changeIconTintToBlack(this, binding.imageAvatar)
+            changeIconTintToBlack(this, binding.imageBadgeCount)
+            changeIconTintToBlack(this, binding.imageMessageReceipt)
+            changeIconTintToBlack(this, binding.imageStatusIndicator)
+            changeIconTintToBlack(this, binding.imageTextBubble)
+            changeIconTintToBlack(this, binding.imageImageBubble)
+            changeIconTintToBlack(this, binding.imageVideoBubble)
+            changeIconTintToBlack(this, binding.imageAudioBubble)
+            changeIconTintToBlack(this, binding.imageFileBubble)
+            changeIconTintToBlack(this, binding.imageFormBubble)
+            changeIconTintToBlack(this, binding.imageCardBubble)
+            changeIconTintToBlack(this, binding.imageSchedulerBubble)
+            changeIconTintToBlack(this, binding.imageMic)
+            changeIconTintToBlack(this, binding.imageListItem)
+            Utils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.app_background))
+            parentView.setBackgroundTintList(
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.app_background
+                    )
+                )
+            )
         }
     }
 

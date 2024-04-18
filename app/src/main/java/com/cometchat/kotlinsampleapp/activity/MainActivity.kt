@@ -16,16 +16,18 @@ import com.cometchat.chat.models.User
 import com.cometchat.chatuikit.shared.cometchatuikit.CometChatUIKit
 import com.cometchat.chatuikit.shared.cometchatuikit.UIKitSettings.UIKitSettingsBuilder
 import com.cometchat.chatuikit.shared.resources.utils.Utils
+import com.cometchat.kotlinsampleapp.AppConstants
 import com.cometchat.kotlinsampleapp.AppUtils.fetchDefaultObjects
 import com.cometchat.kotlinsampleapp.AppUtils.isNightMode
 import com.cometchat.kotlinsampleapp.Application
-import com.cometchat.kotlinsampleapp.AppConstants
+import com.cometchat.kotlinsampleapp.BuildConfig
 import com.cometchat.kotlinsampleapp.R
+import com.cometchat.kotlinsampleapp.databinding.ActivityMainBinding
 import com.google.android.material.card.MaterialCardView
 import org.json.JSONObject
-import com.cometchat.kotlinsampleapp.BuildConfig
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     private lateinit var superhero1: MaterialCardView
     private lateinit var superhero2: MaterialCardView
     private lateinit var superhero3: MaterialCardView
@@ -35,9 +37,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var parentView: LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        parentView = findViewById(R.id.parent_view)
-        Utils.setStatusBarColor(this, getResources().getColor(R.color.white))
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        parentView = binding.parentView
+        Utils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.white))
         val uiKitSettings =
             UIKitSettingsBuilder().setRegion(AppConstants.REGION).setAppId(AppConstants.APP_ID)
                 .setAuthKey(AppConstants.AUTH_KEY).subscribePresenceForAllUsers().build()
@@ -56,40 +59,40 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
             }
         })
-        superhero1 = findViewById(R.id.superhero1)
-        superhero2 = findViewById(R.id.superhero2)
-        superhero3 = findViewById(R.id.superhero3)
-        superhero4 = findViewById(R.id.superhero4)
-        ivLogo = findViewById(R.id.ivLogo)
-        tvCometChat = findViewById(R.id.tvComet)
-        findViewById<View>(R.id.login).setOnClickListener { view: View? ->
-            startActivity(
-                Intent(
-                    this@MainActivity,
-                    LoginActivity::class.java
-                )
-            )
+        superhero1 = binding.superhero1
+        superhero2 = binding.superhero2
+        superhero3 = binding.superhero3
+        superhero4 = binding.superhero4
+        ivLogo = binding.ivLogo
+        tvCometChat = binding.tvComet
+
+        binding.login.setOnClickListener {
+            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
         }
-        superhero1.setOnClickListener(View.OnClickListener { view: View? ->
-            findViewById<View>(R.id.superhero1Progressbar).visibility = View.VISIBLE
+
+        superhero1.setOnClickListener {
+            binding.superhero1Progressbar.visibility = View.VISIBLE
             login("superhero1")
-        })
-        superhero2.setOnClickListener(View.OnClickListener { view: View? ->
-            findViewById<View>(R.id.superhero2Progressbar).visibility = View.VISIBLE
+        }
+
+        superhero2.setOnClickListener {
+            binding.superhero2Progressbar.visibility = View.VISIBLE
             login("superhero2")
-        })
-        superhero3.setOnClickListener(View.OnClickListener { view: View? ->
-            findViewById<View>(R.id.superhero3Progressbar).visibility = View.VISIBLE
+        }
+
+        superhero3.setOnClickListener {
+            binding.superhero3Progressbar.visibility = View.VISIBLE
             login("superhero3")
-        })
-        superhero4.setOnClickListener(View.OnClickListener { view: View? ->
-            findViewById<View>(R.id.superhero4Progressbar).visibility = View.VISIBLE
+        }
+
+        superhero4.setOnClickListener {
+            binding.superhero4Progressbar.visibility = View.VISIBLE
             login("superhero4")
-        })
+        }
         if (Utils.isDarkMode(this)) {
-            ivLogo.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)))
+            ivLogo.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white)))
         } else {
-            ivLogo.setImageTintList(ColorStateList.valueOf(getResources().getColor(com.cometchat.chatuikit.R.color.cometchat_primary_text_color)))
+            ivLogo.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(this, com.cometchat.chatuikit.R.color.cometchat_primary_text_color)))
         }
         setUpUI()
     }
@@ -120,11 +123,11 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
             )
-            tvCometChat.setTextColor(getResources().getColor(R.color.app_background))
+            tvCometChat.setTextColor(ContextCompat.getColor(this, R.color.app_background))
         } else {
-            Utils.setStatusBarColor(this, getResources().getColor(R.color.app_background))
-            parentView.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.app_background)))
-            tvCometChat.setTextColor(getResources().getColor(R.color.app_background_dark))
+            Utils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.app_background))
+            parentView.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.app_background)))
+            tvCometChat.setTextColor(ContextCompat.getColor(this, R.color.app_background_dark))
         }
     }
 
