@@ -39,9 +39,7 @@ class CallButtonFragment : Fragment() {
                     context, 25
                 ), Utils.convertDpToPx(context, 25)
             ).setButtonIconTint(
-                CometChatTheme.getInstance(
-                    context
-                ).palette.primary
+                CometChatTheme.getInstance().palette.getPrimary(context)
             )
         )
         cometChatCallButton.setUser(defaultUser)

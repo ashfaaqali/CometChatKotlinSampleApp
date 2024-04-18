@@ -1,4 +1,4 @@
-package com.cometchat.javasampleapp.fragments.shared.views
+package com.cometchat.kotlinsampleapp.fragments.shared.views
 
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -29,14 +29,14 @@ class BadgeCountFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_badge_count, container, false)
         val badgeCount = view.findViewById<CometChatBadge>(R.id.badgeCount)
-        badgeCountLayout = view.findViewById<TextInputLayout>(R.id.badgeCountLayout)
-        badgeCountEdt = view.findViewById<TextInputEditText>(R.id.badgeCountEdt)
-        parentView = view.findViewById<LinearLayout>(R.id.parent_view)
+        badgeCountLayout = view.findViewById(R.id.badgeCountLayout)
+        badgeCountEdt = view.findViewById(R.id.badgeCountEdt)
+        parentView = view.findViewById(R.id.parent_view)
         badgeCountEdt.setText(1.toString())
         badgeCountEdt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
             override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-                if (charSequence.length > 0 && charSequence.length < 7) {
+                if (charSequence.length in 1..6) {
                     count = charSequence.toString().toInt()
                     badgeCount.count = count
                 }
@@ -80,8 +80,8 @@ class BadgeCountFragment : Fragment() {
 
     private fun setUpUI(view: View) {
         if (AppUtils.isNightMode(requireContext())) {
-            AppUtils.changeTextColorToWhite(requireContext(), view.findViewById(R.id.badge_count_text_desc))
-            AppUtils.changeTextColorToWhite(requireContext(), view.findViewById(R.id.badge_count_text))
+            AppUtils.changeTextColorToWhite(context, view.findViewById(R.id.badge_count_text_desc))
+            AppUtils.changeTextColorToWhite(context, view.findViewById(R.id.badge_count_text))
             badgeCountLayout.setBoxStrokeColorStateList(
                 ColorStateList.valueOf(
                     resources.getColor(
@@ -95,15 +95,32 @@ class BadgeCountFragment : Fragment() {
             parentView.setBackgroundTintList(
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
-                        requireContext(), R.color.app_background_dark
+                        requireContext(),
+                        R.color.app_background_dark
                     )
                 )
             )
         } else {
-            AppUtils.changeTextColorToBlack(requireContext(), view.findViewById(R.id.avatar_text))
-            AppUtils.changeTextColorToBlack(requireContext(), view.findViewById(R.id.avatar_text_toggle))
-            AppUtils.changeTextColorToBlack(requireContext(), view.findViewById(R.id.loggedInUserName))
-            parentView.setBackgroundTintList(ColorStateList.valueOf(resources.getColor(R.color.app_background)))
+            AppUtils.changeTextColorToBlack(context, view.findViewById(R.id.badge_count_text_desc))
+            AppUtils.changeTextColorToBlack(context, view.findViewById(R.id.badge_count_text))
+            badgeCountLayout.setBoxStrokeColorStateList(
+                ColorStateList.valueOf(
+                    resources.getColor(
+                        R.color.black
+                    )
+                )
+            )
+            badgeCountLayout.hintTextColor =
+                ColorStateList.valueOf(resources.getColor(R.color.black))
+            badgeCountLayout.editText!!.setTextColor(ColorStateList.valueOf(resources.getColor(R.color.black)))
+            parentView.setBackgroundTintList(
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.app_background
+                    )
+                )
+            )
         }
     }
 }

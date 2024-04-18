@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import com.cometchat.chatuikit.shared.resources.soundManager.CometChatSoundManager
 import com.cometchat.chatuikit.shared.resources.soundManager.Sound
 import com.cometchat.kotlinsampleapp.AppUtils
-
 import com.cometchat.kotlinsampleapp.R
 
 class SoundManagerFragment : Fragment() {
@@ -46,14 +45,19 @@ class SoundManagerFragment : Fragment() {
             parentView!!.setBackgroundTintList(
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
-                        requireContext(), R.color.app_background_dark
+                        requireContext(),
+                        R.color.app_background_dark
                     )
                 )
             )
         } else {
-            AppUtils.changeTextColorToWhite(context, view.findViewById(R.id.soundManager_title))
-            AppUtils.changeTextColorToWhite(context, view.findViewById(R.id.incoming_message_text))
-            AppUtils.changeTextColorToWhite(context, view.findViewById(R.id.outgoing_message_text))
+            AppUtils.changeTextColorToBlack(context, view.findViewById(R.id.soundManager_title))
+            AppUtils.changeTextColorToBlack(
+                context,
+                view.findViewById(R.id.soundManager_description)
+            )
+            AppUtils.changeTextColorToBlack(context, view.findViewById(R.id.incoming_message_text))
+            AppUtils.changeTextColorToBlack(context, view.findViewById(R.id.outgoing_message_text))
             parentView!!.setBackgroundTintList(ColorStateList.valueOf(resources.getColor(R.color.app_background)))
         }
     }

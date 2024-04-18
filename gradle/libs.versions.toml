@@ -1,7 +1,7 @@
 [versions]
 agp = "8.3.0"
 callsSdkAndroid = "4.0.2"
-chatUikitAndroid = "4.3.2"
+chatUikitAndroid = "4.+"
 kotlin = "1.9.0"
 coreKtx = "1.12.0"
 junit = "4.13.2"

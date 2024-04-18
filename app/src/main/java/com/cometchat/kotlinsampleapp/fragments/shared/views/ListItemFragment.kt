@@ -47,13 +47,13 @@ class ListItemFragment : Fragment() {
         val tailView = ConversationTailView(requireContext())
         tailView.setBadgeCount(100)
         tailView.badge.setStyle(
-            BadgeStyle().setTextColor(theme.palette.accent).setBackground(theme.palette.primary)
+            BadgeStyle().setTextColor(theme.palette.getAccent(context)).setBackground(theme.palette.getPrimary(context))
                 .setCornerRadius(100f)
         )
         tailView.date.setDate(System.currentTimeMillis() / 1000, Pattern.DAY_DATE_TIME)
         tailView.date.setStyle(
             DateStyle().setTextAppearance(theme.typography.subtitle1)
-                .setTextColor(theme.palette.accent600)
+                .setTextColor(theme.palette.getAccent600(context))
         )
         conversationListItem.setTitle(name)
         conversationListItem.setAvatar(CometChatUIKit.getLoggedInUser().avatar, name)

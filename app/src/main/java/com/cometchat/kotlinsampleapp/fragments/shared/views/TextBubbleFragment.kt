@@ -21,13 +21,13 @@ class TextBubbleFragment : Fragment() {
         val receiverBubble = view.findViewById<CometChatTextBubble>(R.id.receiver_bubble)
         receiverBubble.setText("Hi John, How are you?")
         receiverBubble.setStyle(
-            TextBubbleStyle().setBackground(cometChatTheme.palette.accent100)
-                .setTextColor(cometChatTheme.palette.accent).setCornerRadius(18f)
+            TextBubbleStyle().setBackground(cometChatTheme.palette.getAccent100(context))
+                .setTextColor(cometChatTheme.palette.getAccent(context)).setCornerRadius(18f)
         )
         val senderBubble = view.findViewById<CometChatTextBubble>(R.id.sender_bubble)
         senderBubble.setText("Hey Jack,I am fine. How about you?")
         senderBubble.setStyle(
-            TextBubbleStyle().setBackground(cometChatTheme.palette.primary).setTextColor(
+            TextBubbleStyle().setBackground(cometChatTheme.palette.getPrimary(context)).setTextColor(
                 resources.getColor(R.color.white)
             ).setCornerRadius(18f)
         )

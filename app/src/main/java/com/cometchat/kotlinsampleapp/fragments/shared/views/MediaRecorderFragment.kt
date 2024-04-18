@@ -14,22 +14,22 @@ class MediaRecorderFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_media_recorder, container, false)
         val mediaRecorder = view.findViewById<CometChatMediaRecorder>(R.id.recorder)
         val cometChatTheme = CometChatTheme.getInstance(context)
         mediaRecorder.setStyle(
             MediaRecorderStyle()
-                .setBackground(cometChatTheme.palette.background)
-                .setBackground(cometChatTheme.palette.background)
-                .setRecordedContainerColor(cometChatTheme.palette.accent100)
-                .setPlayIconTint(cometChatTheme.palette.accent)
-                .setPauseIconTint(cometChatTheme.palette.accent)
-                .setStopIconTint(cometChatTheme.palette.error)
-                .setVoiceRecordingIconTint(cometChatTheme.palette.error)
-                .setRecordingChunkColor(cometChatTheme.palette.primary)
-                .setTimerTextColor(cometChatTheme.palette.accent)
+                .setBackground(cometChatTheme.palette.getBackground(context))
+                .setBackground(cometChatTheme.palette.getBackground(context))
+                .setRecordedContainerColor(cometChatTheme.palette.getAccent100(context))
+                .setPlayIconTint(cometChatTheme.palette.getAccent(context))
+                .setPauseIconTint(cometChatTheme.palette.getAccent(context))
+                .setStopIconTint(cometChatTheme.palette.getError(context))
+                .setVoiceRecordingIconTint(cometChatTheme.palette.getError(context))
+                .setRecordingChunkColor(cometChatTheme.palette.getPrimary(context))
+                .setTimerTextColor(cometChatTheme.palette.getAccent(context))
                 .setTimerTextAppearance(cometChatTheme.typography.text1)
         )
         mediaRecorder.cardElevation = 10f

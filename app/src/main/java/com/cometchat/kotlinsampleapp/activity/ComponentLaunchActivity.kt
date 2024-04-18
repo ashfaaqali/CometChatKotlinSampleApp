@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.cometchat.chatuikit.shared.resources.utils.Utils
-import com.cometchat.javasampleapp.fragments.shared.views.BadgeCountFragment
+import com.cometchat.kotlinsampleapp.fragments.shared.views.BadgeCountFragment
 import com.cometchat.kotlinsampleapp.AppUtils
 import com.cometchat.kotlinsampleapp.fragments.calls.CallButtonFragment
 import com.cometchat.kotlinsampleapp.R
