@@ -61,7 +61,7 @@ class ComponentLaunchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityComponentLaunchBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_component_launch)
+        setContentView(binding.root)
         val id = intent.getIntExtra("component", 0)
         parentView = binding.container
         setUpUI()

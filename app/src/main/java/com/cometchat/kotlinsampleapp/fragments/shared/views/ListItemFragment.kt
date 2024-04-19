@@ -31,6 +31,7 @@ class ListItemFragment : Fragment() {
         val theme = CometChatTheme.getInstance(requireContext())
         val groupListItem = view.findViewById<CometChatListItem>(R.id.group_list_item)
         groupListItem.setTitle("Superhero")
+        groupListItem.setTitleColor(theme.palette.getAccent(context))
         groupListItem.setSubtitleView(getTextView("8 members"))
         groupListItem.setAvatar(
             "https://data-us.cometchat.io/2379614bd4db65dd/media/1682517838_2050398854_08d684e835e3c003f70f2478f937ed57.jpeg",
@@ -42,6 +43,7 @@ class ListItemFragment : Fragment() {
         userListItem.setAvatar(CometChatUIKit.getLoggedInUser().avatar, name)
         userListItem.setSubtitleView(getTextView(CometChatUIKit.getLoggedInUser().status))
         userListItem.setTitle(name)
+        userListItem.setTitleColor(theme.palette.getAccent(context))
         userListItem.setStatusIndicatorColor(resources.getColor(com.cometchat.chatuikit.R.color.cometchat_online_green))
         val conversationListItem = view.findViewById<CometChatListItem>(R.id.conversation_list_item)
         val tailView = ConversationTailView(requireContext())
@@ -56,6 +58,7 @@ class ListItemFragment : Fragment() {
                 .setTextColor(theme.palette.getAccent600(context))
         )
         conversationListItem.setTitle(name)
+        conversationListItem.setTitleColor(theme.palette.getAccent(context))
         conversationListItem.setAvatar(CometChatUIKit.getLoggedInUser().avatar, name)
         conversationListItem.setTailView(tailView)
         conversationListItem.setSubtitleView(getTextView("Hey, How are you?"))
