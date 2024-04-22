@@ -48,22 +48,22 @@ class ThemeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_theme, container, false)
-        palette = Palette.getInstance(context)
-        parentView = view.findViewById<LinearLayout>(R.id.parent_view)
+        palette = Palette.getInstance()
+        parentView = view.findViewById(R.id.parent_view)
         setUpUI(view)
         setTheme(true)
         val radioGroup = view.findViewById<RadioGroup>(R.id.toggle)
-        radioGroup.setOnCheckedChangeListener { radio: RadioGroup?, i: Int ->
+        radioGroup.setOnCheckedChangeListener { _: RadioGroup?, i: Int ->
             if (i == R.id.defaultTheme) {
                 setTheme(true)
             } else if (i == R.id.customTheme) {
                 setTheme(false)
             }
         }
-        view.findViewById<View>(R.id.button).setOnClickListener { view1: View? ->
+        view.findViewById<View>(R.id.button).setOnClickListener {
             val intent = Intent(
                 activity,
                 ComponentLaunchActivity::class.java
@@ -76,17 +76,17 @@ class ThemeFragment : Fragment() {
 
     private fun setTheme(isDefault: Boolean) {
         if (isDefault) {
-            accent = resources.getColor(com.cometchat.chatuikit.R.color.cometchat_accent)
-            background = resources.getColor(R.color.white)
-            primary = resources.getColor(com.cometchat.chatuikit.R.color.cometchat_accent)
+            accent = ContextCompat.getColor(requireContext(), com.cometchat.chatuikit.R.color.cometchat_accent)
+            background = ContextCompat.getColor(requireContext(), R.color.white)
+            primary = ContextCompat.getColor(requireContext(), com.cometchat.chatuikit.R.color.cometchat_accent)
             heading = R.style.Heading
             name = R.style.Name
             text1 = R.style.Text1
             text2 = R.style.Text2
         } else {
-            accent = resources.getColor(com.cometchat.chatuikit.R.color.cometchat_online_green)
+            accent = ContextCompat.getColor(requireContext(), com.cometchat.chatuikit.R.color.cometchat_online_green)
             background = Color.parseColor("#021E20")
-            primary = resources.getColor(android.R.color.black)
+            primary = ContextCompat.getColor(requireContext(), android.R.color.black)
             heading = R.style.AppHeading
             name = R.style.AppName
             text1 = R.style.AppText1
@@ -104,14 +104,14 @@ class ThemeFragment : Fragment() {
         palette!!.accent600(ColorUtils.setAlphaComponent(accent, 148))
         palette!!.accent700(ColorUtils.setAlphaComponent(accent, 176))
         palette!!.accent800(ColorUtils.setAlphaComponent(accent, 209))
-        palette!!.secondary(resources.getColor(com.cometchat.chatuikit.R.color.cometchat_secondary))
+        palette!!.secondary(ContextCompat.getColor(requireContext(), com.cometchat.chatuikit.R.color.cometchat_secondary))
         palette!!.accent900(ColorUtils.setAlphaComponent(accent, 255))
         val typography = Typography.getInstance()
         typography.heading = heading
         typography.name = name
         typography.text1 = text1
         typography.text2 = text2
-        val cometChatTheme = CometChatTheme.getInstance(context)
+        val cometChatTheme = CometChatTheme.getInstance()
         cometChatTheme.palette = palette
         cometChatTheme.typography = typography
     }
@@ -131,7 +131,7 @@ class ThemeFragment : Fragment() {
         } else {
             AppUtils.changeTextColorToBlack(context, view.findViewById(R.id.theme_text))
             AppUtils.changeTextColorToBlack(context, view.findViewById(R.id.theme_text_2))
-            parentView!!.setBackgroundTintList(ColorStateList.valueOf(resources.getColor(R.color.app_background)))
+            parentView!!.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.app_background)))
         }
     }
 }

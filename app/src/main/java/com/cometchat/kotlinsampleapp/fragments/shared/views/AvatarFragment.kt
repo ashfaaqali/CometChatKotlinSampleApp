@@ -27,7 +27,7 @@ class AvatarFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_avatar, container, false)
         avatar = view.findViewById(R.id.avataricon)
@@ -42,11 +42,11 @@ class AvatarFragment : Fragment() {
         }
         avatar.setBorderWidth(10) // set Avatar Border Width
         avatar.setCornerRadius(0f) // set Avatar Corner Radius
-        avatar.setElevation(0f)
+        avatar.elevation = 0f
         avatar.setTextAppearance(androidx.appcompat.R.style.Base_TextAppearance_AppCompat_Large)
         cornerRadiusLayout = view.findViewById(R.id.borderRadiusLayout)
         val radioGroup = view.findViewById<RadioGroup>(R.id.toggle)
-        radioGroup.setOnCheckedChangeListener { radio: RadioGroup?, i: Int ->
+        radioGroup.setOnCheckedChangeListener { _: RadioGroup?, i: Int ->
             if (i == R.id.image) {
                 avatar.setImage(CometChatUIKit.getLoggedInUser().avatar)
             } else if (i == R.id.name) {
@@ -79,19 +79,38 @@ class AvatarFragment : Fragment() {
                 requireContext(),
                 view.findViewById(R.id.avatar_text_description)
             )
-            AppUtils.changeTextColorToWhite(requireContext(), view.findViewById(R.id.avatar_text_toggle))
-            AppUtils.changeTextColorToWhite(requireContext(), view.findViewById(R.id.loggedInUserName))
-            avatar.setTextColor(ContextCompat.getColor(requireContext(), R.color.app_background_dark))
+            AppUtils.changeTextColorToWhite(
+                requireContext(),
+                view.findViewById(R.id.avatar_text_toggle)
+            )
+            AppUtils.changeTextColorToWhite(
+                requireContext(),
+                view.findViewById(R.id.loggedInUserName)
+            )
+            avatar.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.app_background_dark
+                )
+            )
             cornerRadiusLayout.setBoxStrokeColorStateList(
                 ColorStateList.valueOf(
-                    resources.getColor(
+                    ContextCompat.getColor(
+                        requireContext(),
                         R.color.white
                     )
                 )
             )
             cornerRadiusLayout.hintTextColor =
-                ColorStateList.valueOf(resources.getColor(R.color.white))
-            cornerRadiusLayout.editText!!.setTextColor(ColorStateList.valueOf(resources.getColor(R.color.white)))
+                ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.white))
+            cornerRadiusLayout.editText!!.setTextColor(
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.white
+                    )
+                )
+            )
             parentView.setBackgroundTintList(
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
@@ -101,9 +120,22 @@ class AvatarFragment : Fragment() {
             )
         } else {
             AppUtils.changeTextColorToBlack(requireContext(), view.findViewById(R.id.avatar_text))
-            AppUtils.changeTextColorToBlack(requireContext(), view.findViewById(R.id.avatar_text_toggle))
-            AppUtils.changeTextColorToBlack(requireContext(), view.findViewById(R.id.loggedInUserName))
-            parentView.setBackgroundTintList(ColorStateList.valueOf(resources.getColor(R.color.app_background)))
+            AppUtils.changeTextColorToBlack(
+                requireContext(),
+                view.findViewById(R.id.avatar_text_toggle)
+            )
+            AppUtils.changeTextColorToBlack(
+                requireContext(),
+                view.findViewById(R.id.loggedInUserName)
+            )
+            parentView.setBackgroundTintList(
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.app_background
+                    )
+                )
+            )
         }
     }
 }

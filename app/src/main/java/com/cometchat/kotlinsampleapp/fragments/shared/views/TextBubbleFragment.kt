@@ -35,7 +35,8 @@ class TextBubbleFragment : Fragment() {
                 cometChatTheme.palette.getPrimary(
                     context
                 )
-            ).setTextColor(ContextCompat.getColor(requireContext(), R.color.white)).setCornerRadius(18f)
+            ).setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                .setCornerRadius(18f)
         )
         return view
     }

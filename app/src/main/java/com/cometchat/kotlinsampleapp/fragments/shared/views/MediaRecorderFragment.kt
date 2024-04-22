@@ -18,7 +18,7 @@ class MediaRecorderFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_media_recorder, container, false)
         val mediaRecorder = view.findViewById<CometChatMediaRecorder>(R.id.recorder)
-        val cometChatTheme = CometChatTheme.getInstance(context)
+        val cometChatTheme = CometChatTheme.getInstance()
         mediaRecorder.setStyle(
             MediaRecorderStyle()
                 .setBackground(cometChatTheme.palette.getBackground(context))

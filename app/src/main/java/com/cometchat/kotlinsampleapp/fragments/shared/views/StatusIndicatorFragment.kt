@@ -12,11 +12,8 @@ import androidx.fragment.app.Fragment
 import com.cometchat.chatuikit.shared.views.CometChatStatusIndicator.CometChatStatusIndicator
 import com.cometchat.kotlinsampleapp.AppUtils
 import com.cometchat.kotlinsampleapp.R
-import com.google.android.material.textfield.TextInputLayout
 
 class StatusIndicatorFragment : Fragment() {
-    private val borderWidthLayout: TextInputLayout? = null
-    private val cornerRadiusLayout: TextInputLayout? = null
     private var parentView: LinearLayout? = null
 
     override fun onCreateView(
@@ -27,14 +24,29 @@ class StatusIndicatorFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_status_indicator, container, false)
         val statusIndicator = view.findViewById<CometChatStatusIndicator>(R.id.statusIndicator)
         parentView = view.findViewById(R.id.parent_view)
-        statusIndicator.setBackgroundColor(resources.getColor(com.cometchat.chatuikit.R.color.cometchat_online_green))
+        statusIndicator.setBackgroundColor(
+            ContextCompat.getColor(
+                requireContext(),
+                com.cometchat.chatuikit.R.color.cometchat_online_green
+            )
+        )
         val statusChangeGroup = view.findViewById<RadioGroup>(R.id.toggle)
         statusIndicator.setBorderWidth(0)
-        statusChangeGroup.setOnCheckedChangeListener { radioGroup: RadioGroup?, i: Int ->
+        statusChangeGroup.setOnCheckedChangeListener { _: RadioGroup?, i: Int ->
             if (i == R.id.online) {
-                statusIndicator.setBackgroundColor(resources.getColor(com.cometchat.chatuikit.R.color.cometchat_online_green))
+                statusIndicator.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        com.cometchat.chatuikit.R.color.cometchat_online_green
+                    )
+                )
             } else if (i == R.id.offline) {
-                statusIndicator.setBackgroundColor(resources.getColor(android.R.color.darker_gray))
+                statusIndicator.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        android.R.color.darker_gray
+                    )
+                )
             }
         }
         setUpUI(view)
@@ -43,7 +55,10 @@ class StatusIndicatorFragment : Fragment() {
 
     private fun setUpUI(view: View) {
         if (AppUtils.isNightMode(requireContext())) {
-            AppUtils.changeTextColorToWhite(requireContext(), view.findViewById(R.id.status_indicator_text))
+            AppUtils.changeTextColorToWhite(
+                requireContext(),
+                view.findViewById(R.id.status_indicator_text)
+            )
             AppUtils.changeTextColorToWhite(requireContext(), view.findViewById(R.id.status_desc))
             AppUtils.changeTextColorToWhite(requireContext(), view.findViewById(R.id.status_title))
             parentView!!.setBackgroundTintList(
@@ -54,9 +69,19 @@ class StatusIndicatorFragment : Fragment() {
                 )
             )
         } else {
-            AppUtils.changeTextColorToBlack(requireContext(), view.findViewById(R.id.status_indicator_text))
+            AppUtils.changeTextColorToBlack(
+                requireContext(),
+                view.findViewById(R.id.status_indicator_text)
+            )
             AppUtils.changeTextColorToBlack(requireContext(), view.findViewById(R.id.status_title))
-            parentView!!.setBackgroundTintList(ColorStateList.valueOf(resources.getColor(R.color.app_background)))
+            parentView!!.setBackgroundTintList(
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.app_background
+                    )
+                )
+            )
         }
     }
 }

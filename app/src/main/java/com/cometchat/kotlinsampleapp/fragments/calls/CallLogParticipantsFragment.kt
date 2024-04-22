@@ -15,11 +15,11 @@ class CallLogParticipantsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_call_log_participants, container, false)
         cometChatCallLogParticipants =
-            view.findViewById<CometChatCallLogParticipants>(R.id.call_logs_participants)
+            view.findViewById(R.id.call_logs_participants)
         createCallParticipants()
         return view
     }

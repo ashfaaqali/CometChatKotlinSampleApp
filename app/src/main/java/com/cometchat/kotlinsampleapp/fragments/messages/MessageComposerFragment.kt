@@ -20,10 +20,10 @@ class MessageComposerFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_message_composer, container, false)
-        parentView = view.findViewById<RelativeLayout>(R.id.parent_view)
+        parentView = view.findViewById(R.id.parent_view)
         requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         val cometChatMessageComposer = view.findViewById<CometChatMessageComposer>(R.id.composer)
         cometChatMessageComposer.user = defaultUser
@@ -41,7 +41,7 @@ class MessageComposerFragment : Fragment() {
                 )
             )
         } else {
-            parentView!!.setBackgroundTintList(ColorStateList.valueOf(resources.getColor(R.color.app_background)))
+            parentView!!.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.app_background)))
         }
     }
 }

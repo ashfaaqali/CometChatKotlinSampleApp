@@ -19,7 +19,6 @@ import com.cometchat.chatuikit.shared.resources.utils.Utils
 import com.cometchat.kotlinsampleapp.AppConstants
 import com.cometchat.kotlinsampleapp.AppUtils.fetchDefaultObjects
 import com.cometchat.kotlinsampleapp.AppUtils.isNightMode
-import com.cometchat.kotlinsampleapp.Application
 import com.cometchat.kotlinsampleapp.BuildConfig
 import com.cometchat.kotlinsampleapp.R
 import com.cometchat.kotlinsampleapp.databinding.ActivityMainBinding
@@ -48,7 +47,6 @@ class MainActivity : AppCompatActivity() {
             override fun onSuccess(s: String?) {
                 CometChat.setDemoMetaInfo(appMetadata)
                 if (CometChatUIKit.getLoggedInUser() != null) {
-                    Application.addCallListener(this@MainActivity)
                     fetchDefaultObjects()
                     startActivity(Intent(this@MainActivity, HomeActivity::class.java))
                     finish()
@@ -100,7 +98,6 @@ class MainActivity : AppCompatActivity() {
     private fun login(uid: String) {
         CometChatUIKit.login(uid, object : CometChat.CallbackListener<User?>() {
             override fun onSuccess(user: User?) {
-                Application.addCallListener(this@MainActivity)
                 fetchDefaultObjects()
                 startActivity(Intent(this@MainActivity, HomeActivity::class.java))
                 finish()

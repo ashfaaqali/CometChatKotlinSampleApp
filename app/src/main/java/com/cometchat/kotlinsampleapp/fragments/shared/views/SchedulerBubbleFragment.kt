@@ -39,13 +39,13 @@ class SchedulerBubbleFragment : Fragment() {
         cardView = view.findViewById(R.id.scheduler_bubble_card)
         schedulerBubble.setStyle(schedulerBubbleStyle)
         schedulerBubble.setSchedulerMessage(schedulerMessage)
-        cardView.setCardBackgroundColor(CometChatTheme.getInstance(context).palette.getAccent50(context))
+        cardView.setCardBackgroundColor(CometChatTheme.getInstance().palette.getAccent50(context))
         return view
     }
 
     private val schedulerBubbleStyle: SchedulerBubbleStyle
         get() {
-            val theme = CometChatTheme.getInstance(context)
+            val theme = CometChatTheme.getInstance()
             val schedulerBubbleStyle = SchedulerBubbleStyle()
             schedulerBubbleStyle.setAvatarStyle(
                 AvatarStyle().setOuterCornerRadius(100f)

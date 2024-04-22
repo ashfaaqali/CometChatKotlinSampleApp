@@ -38,7 +38,7 @@ class FormBubbleFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_form_bubble, container, false)
         parentLayout = view.findViewById(R.id.parent_layout)
         formBubble = view.findViewById(R.id.form_bubble)
-        val theme = CometChatTheme.getInstance(context)
+        val theme = CometChatTheme.getInstance()
         //create style object for Form bubble
         val formBubbleStyle = FormBubbleStyle()
             .setTitleAppearance(theme.typography.heading)

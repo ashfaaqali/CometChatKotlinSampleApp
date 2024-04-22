@@ -14,7 +14,7 @@ class JoinProtectedGroupFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_join_protected_group, container, false)
         val joinProtectedGroup = view.findViewById<CometChatJoinProtectedGroup>(R.id.join_group)

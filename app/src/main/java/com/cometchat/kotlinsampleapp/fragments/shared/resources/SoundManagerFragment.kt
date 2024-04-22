@@ -18,16 +18,16 @@ class SoundManagerFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_sound_manager, container, false)
-        parentView = view.findViewById<LinearLayout>(R.id.parent_view)
+        parentView = view.findViewById(R.id.parent_view)
         setUpUI(view)
         val soundManager = CometChatSoundManager(activity)
-        view.findViewById<View>(R.id.playIncoming).setOnClickListener { view1: View? ->
+        view.findViewById<View>(R.id.playIncoming).setOnClickListener {
             soundManager.play(Sound.incomingMessage) //To play incoming Messages sound
         }
-        view.findViewById<View>(R.id.playOutgoing).setOnClickListener { view12: View? ->
+        view.findViewById<View>(R.id.playOutgoing).setOnClickListener {
             soundManager.play(Sound.outgoingMessage) //To play outgoing Messages sound
         }
         return view
@@ -58,7 +58,14 @@ class SoundManagerFragment : Fragment() {
             )
             AppUtils.changeTextColorToBlack(context, view.findViewById(R.id.incoming_message_text))
             AppUtils.changeTextColorToBlack(context, view.findViewById(R.id.outgoing_message_text))
-            parentView!!.setBackgroundTintList(ColorStateList.valueOf(resources.getColor(R.color.app_background)))
+            parentView!!.setBackgroundTintList(
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.app_background
+                    )
+                )
+            )
         }
     }
 }

@@ -24,7 +24,7 @@ class FileBubbleFragment : Fragment() {
             "pdf"
         )
         fileBubble.setStyle(
-            FileBubbleStyle().setBackground(CometChatTheme.getInstance(context).palette.getAccent100(context))
+            FileBubbleStyle().setBackground(CometChatTheme.getInstance().palette.getAccent100(context))
                 .setCornerRadius(18f)
         )
         fileBubble.title.setPadding(20, 20, 20, 10)

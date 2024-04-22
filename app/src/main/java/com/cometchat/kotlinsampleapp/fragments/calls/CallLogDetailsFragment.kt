@@ -19,7 +19,7 @@ class CallLogDetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_call_details, container, false)
         cometChatCallLogDetails = view.findViewById(R.id.call_logs_details)
@@ -27,7 +27,7 @@ class CallLogDetailsFragment : Fragment() {
         return view
     }
 
-    fun createCallLog() {
+    private fun createCallLog() {
         if (CometChatUIKit.getLoggedInUser() != null) {
             val initiator = CallUser()
             initiator.avatar = CometChatUIKit.getLoggedInUser().avatar

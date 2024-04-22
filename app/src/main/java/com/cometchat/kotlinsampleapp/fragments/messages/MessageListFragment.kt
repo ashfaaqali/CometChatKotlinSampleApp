@@ -14,7 +14,7 @@ class MessageListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_message_list, container, false)
         val messageList = view.findViewById<CometChatMessageList>(R.id.messageList)

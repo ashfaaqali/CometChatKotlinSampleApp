@@ -26,9 +26,13 @@ class ImageBubbleFragment : Fragment() {
             false
         )
         imageBubble.setStyle(
-            ImageBubbleStyle().setCornerRadius(18f).setTextColor(cometChatTheme.palette.getAccent(context))
+            ImageBubbleStyle().setCornerRadius(18f)
+                .setTextColor(cometChatTheme.palette.getAccent(context))
                 .setBackground(
-                    ContextCompat.getColor(requireContext(), com.cometchat.chatuikit.R.color.cometchat_accent100)
+                    ContextCompat.getColor(
+                        requireContext(),
+                        com.cometchat.chatuikit.R.color.cometchat_accent100
+                    )
                 )
         )
         imageBubble.setCaption("This is a simple representation of CometChat Image Bubble")

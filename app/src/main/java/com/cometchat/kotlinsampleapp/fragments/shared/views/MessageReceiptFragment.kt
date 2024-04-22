@@ -76,7 +76,10 @@ class MessageReceiptFragment : Fragment() {
 
     private fun setUpUI(view: View) {
         if (AppUtils.isNightMode(requireContext())) {
-            AppUtils.changeTextColorToWhite(requireContext(), view.findViewById(R.id.message_receipt_text))
+            AppUtils.changeTextColorToWhite(
+                requireContext(),
+                view.findViewById(R.id.message_receipt_text)
+            )
             AppUtils.changeTextColorToWhite(
                 requireContext(),
                 view.findViewById(R.id.message_receipt_text_desc)
@@ -94,7 +97,10 @@ class MessageReceiptFragment : Fragment() {
                 )
             )
         } else {
-            AppUtils.changeTextColorToBlack(requireContext(), view.findViewById(R.id.message_receipt_text))
+            AppUtils.changeTextColorToBlack(
+                requireContext(),
+                view.findViewById(R.id.message_receipt_text)
+            )
             AppUtils.changeTextColorToBlack(
                 requireContext(),
                 view.findViewById(R.id.message_receipt_text_desc)
@@ -104,7 +110,14 @@ class MessageReceiptFragment : Fragment() {
             AppUtils.changeTextColorToBlack(requireContext(), view.findViewById(R.id.deliver_text))
             AppUtils.changeTextColorToBlack(requireContext(), view.findViewById(R.id.read_text))
             AppUtils.changeTextColorToBlack(requireContext(), view.findViewById(R.id.error_text))
-            parentView!!.setBackgroundTintList(ColorStateList.valueOf(resources.getColor(R.color.app_background)))
+            parentView!!.setBackgroundTintList(
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.app_background
+                    )
+                )
+            )
         }
     }
 }

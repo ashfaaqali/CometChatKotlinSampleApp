@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.cometchat.chatuikit.shared.views.CometChatVideoBubble.CometChatVideoBubble
 import com.cometchat.chatuikit.shared.views.CometChatVideoBubble.VideoBubbleStyle
@@ -20,7 +21,8 @@ class VideoBubbleFragment : Fragment() {
         val videoBubble = view.findViewById<CometChatVideoBubble>(R.id.video_bubble)
         videoBubble.setStyle(
             VideoBubbleStyle().setCornerRadius(18f).setBackground(
-                resources.getColor(
+                ContextCompat.getColor(
+                    requireContext(),
                     com.cometchat.chatuikit.R.color.cometchat_accent100
                 )
             )

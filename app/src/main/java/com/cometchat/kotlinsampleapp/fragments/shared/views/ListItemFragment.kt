@@ -28,7 +28,7 @@ class ListItemFragment : Fragment() {
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_list_item, container, false)
         parentView = view.findViewById(R.id.parent_view)
-        val theme = CometChatTheme.getInstance(requireContext())
+        val theme = CometChatTheme.getInstance()
         val groupListItem = view.findViewById<CometChatListItem>(R.id.group_list_item)
         groupListItem.setTitle("Superhero")
         groupListItem.setTitleColor(theme.palette.getAccent(context))
@@ -44,12 +44,18 @@ class ListItemFragment : Fragment() {
         userListItem.setSubtitleView(getTextView(CometChatUIKit.getLoggedInUser().status))
         userListItem.setTitle(name)
         userListItem.setTitleColor(theme.palette.getAccent(context))
-        userListItem.setStatusIndicatorColor(resources.getColor(com.cometchat.chatuikit.R.color.cometchat_online_green))
+        userListItem.setStatusIndicatorColor(
+            ContextCompat.getColor(
+                requireContext(),
+                com.cometchat.chatuikit.R.color.cometchat_online_green
+            )
+        )
         val conversationListItem = view.findViewById<CometChatListItem>(R.id.conversation_list_item)
         val tailView = ConversationTailView(requireContext())
         tailView.setBadgeCount(100)
         tailView.badge.setStyle(
-            BadgeStyle().setTextColor(theme.palette.getAccent(context)).setBackground(theme.palette.getPrimary(context))
+            BadgeStyle().setTextColor(theme.palette.getAccent(context))
+                .setBackground(theme.palette.getPrimary(context))
                 .setCornerRadius(100f)
         )
         tailView.date.setDate(System.currentTimeMillis() / 1000, Pattern.DAY_DATE_TIME)
@@ -62,7 +68,12 @@ class ListItemFragment : Fragment() {
         conversationListItem.setAvatar(CometChatUIKit.getLoggedInUser().avatar, name)
         conversationListItem.setTailView(tailView)
         conversationListItem.setSubtitleView(getTextView("Hey, How are you?"))
-        conversationListItem.setStatusIndicatorColor(resources.getColor(com.cometchat.chatuikit.R.color.cometchat_online_green))
+        conversationListItem.setStatusIndicatorColor(
+            ContextCompat.getColor(
+                requireContext(),
+                com.cometchat.chatuikit.R.color.cometchat_online_green
+            )
+        )
         setUpUI(view)
         return view
     }
@@ -79,7 +90,10 @@ class ListItemFragment : Fragment() {
             AppUtils.changeTextColorToWhite(requireContext(), view.findViewById(R.id.group))
             AppUtils.changeTextColorToWhite(requireContext(), view.findViewById(R.id.user))
             AppUtils.changeTextColorToWhite(requireContext(), view.findViewById(R.id.list_item))
-            AppUtils.changeTextColorToWhite(requireContext(), view.findViewById(R.id.list_item_desc))
+            AppUtils.changeTextColorToWhite(
+                requireContext(),
+                view.findViewById(R.id.list_item_desc)
+            )
             parentView!!.setBackgroundTintList(
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
@@ -92,7 +106,14 @@ class ListItemFragment : Fragment() {
             AppUtils.changeTextColorToBlack(requireContext(), view.findViewById(R.id.group))
             AppUtils.changeTextColorToBlack(requireContext(), view.findViewById(R.id.user))
             AppUtils.changeTextColorToBlack(requireContext(), view.findViewById(R.id.list_item))
-            parentView!!.setBackgroundTintList(ColorStateList.valueOf(resources.getColor(R.color.app_background)))
+            parentView!!.setBackgroundTintList(
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.app_background
+                    )
+                )
+            )
         }
     }
 }

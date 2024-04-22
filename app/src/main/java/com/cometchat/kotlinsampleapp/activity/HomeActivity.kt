@@ -104,10 +104,10 @@ class HomeActivity : AppCompatActivity() {
 
     private fun toggleDarkMode() {
         if (isNightMode(this)) {
-            Palette.getInstance(this).mode(CometChatTheme.MODE.LIGHT)
+            Palette.getInstance().mode(CometChatTheme.MODE.LIGHT)
             switchLightMode()
         } else {
-            Palette.getInstance(this).mode(CometChatTheme.MODE.DARK)
+            Palette.getInstance().mode(CometChatTheme.MODE.DARK)
             switchDarkMode()
         }
     }

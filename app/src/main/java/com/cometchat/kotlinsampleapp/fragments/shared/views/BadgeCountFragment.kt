@@ -46,32 +46,32 @@ class BadgeCountFragment : Fragment() {
         })
         view.findViewById<View>(R.id.bdRed).setOnClickListener {
             badgeCount.setBackground(
-                resources.getColor(R.color.red)
+                ContextCompat.getColor(requireContext(), R.color.red)
             )
         }
         view.findViewById<View>(R.id.bdYellow).setOnClickListener {
             badgeCount.setBackground(
-                resources.getColor(R.color.yellow)
+                ContextCompat.getColor(requireContext(), R.color.yellow)
             )
         }
         view.findViewById<View>(R.id.bdPurple).setOnClickListener {
             badgeCount.setBackground(
-                resources.getColor(R.color.purple)
+                ContextCompat.getColor(requireContext(), R.color.purple)
             )
         }
         view.findViewById<View>(R.id.bdGreen).setOnClickListener {
             badgeCount.setBackground(
-                resources.getColor(R.color.green)
+                ContextCompat.getColor(requireContext(), R.color.green)
             )
         }
         view.findViewById<View>(R.id.bdBlue).setOnClickListener {
             badgeCount.setBackground(
-                resources.getColor(R.color.blue)
+                ContextCompat.getColor(requireContext(), R.color.blue)
             )
         }
         view.findViewById<View>(R.id.bdViolet).setOnClickListener {
             badgeCount.setBackground(
-                resources.getColor(R.color.violet)
+                ContextCompat.getColor(requireContext(), R.color.violet)
             )
         }
         setUpUI(view)
@@ -84,14 +84,22 @@ class BadgeCountFragment : Fragment() {
             AppUtils.changeTextColorToWhite(context, view.findViewById(R.id.badge_count_text))
             badgeCountLayout.setBoxStrokeColorStateList(
                 ColorStateList.valueOf(
-                    resources.getColor(
+                    ContextCompat.getColor(
+                        requireContext(),
                         R.color.white
                     )
                 )
             )
             badgeCountLayout.hintTextColor =
-                ColorStateList.valueOf(resources.getColor(R.color.white))
-            badgeCountLayout.editText!!.setTextColor(ColorStateList.valueOf(resources.getColor(R.color.white)))
+                ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.white))
+            badgeCountLayout.editText!!.setTextColor(
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.white
+                    )
+                )
+            )
             parentView.setBackgroundTintList(
                 ColorStateList.valueOf(
                     ContextCompat.getColor(
@@ -105,14 +113,22 @@ class BadgeCountFragment : Fragment() {
             AppUtils.changeTextColorToBlack(context, view.findViewById(R.id.badge_count_text))
             badgeCountLayout.setBoxStrokeColorStateList(
                 ColorStateList.valueOf(
-                    resources.getColor(
+                    ContextCompat.getColor(
+                        requireContext(),
                         R.color.black
                     )
                 )
             )
             badgeCountLayout.hintTextColor =
-                ColorStateList.valueOf(resources.getColor(R.color.black))
-            badgeCountLayout.editText!!.setTextColor(ColorStateList.valueOf(resources.getColor(R.color.black)))
+                ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.black))
+            badgeCountLayout.editText!!.setTextColor(
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.black
+                    )
+                )
+            )
             parentView.setBackgroundTintList(
                 ColorStateList.valueOf(
                     ContextCompat.getColor(

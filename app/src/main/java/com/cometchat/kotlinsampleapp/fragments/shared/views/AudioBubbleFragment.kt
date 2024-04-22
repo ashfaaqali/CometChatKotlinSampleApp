@@ -28,9 +28,7 @@ class AudioBubbleFragment : Fragment() {
         )
         cometChatAudioBubble.setStyle(
             AudioBubbleStyle().setBackground(
-                CometChatTheme.getInstance(
-                    context
-                ).palette.getAccent100(context)
+                CometChatTheme.getInstance().palette.getAccent100(context)
             ).setCornerRadius(18f)
         )
         return view

@@ -29,14 +29,14 @@ class CardBubbleFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_card_bubble, container, false)
         parentLayout = view.findViewById(R.id.parent_layout)
         cardBubble = view.findViewById(R.id.card_bubble)
         scrollView = view.findViewById(R.id.scroll_view)
-        scrollView.setVerticalScrollBarEnabled(false)
-        val theme = CometChatTheme.getInstance(context)
+        scrollView.isVerticalScrollBarEnabled = false
+        val theme = CometChatTheme.getInstance()
 
         //create style object for card bubble
         val cardBubbleStyle = CardBubbleStyle()
