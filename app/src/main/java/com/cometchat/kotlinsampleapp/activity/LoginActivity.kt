@@ -89,18 +89,21 @@ class LoginActivity : AppCompatActivity() {
             changeTextColorToWhite(this, binding.tvTitle)
             changeTextColorToWhite(this, binding.tvDes2)
             inputLayout.editText!!.setTextColor(ContextCompat.getColor(this, R.color.white))
-            parentView.setBackgroundTintList(
-                ColorStateList.valueOf(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.app_background_dark
-                    )
+            parentView.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.app_background_dark
                 )
             )
         } else {
             changeTextColorToBlack(this, binding.tvTitle)
             changeTextColorToBlack(this, binding.tvDes2)
-            parentView.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.app_background)))
+            parentView.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.app_background
+                )
+            )
         }
     }
 }

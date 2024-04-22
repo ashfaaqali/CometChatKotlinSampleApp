@@ -261,12 +261,10 @@ class ComponentListActivity : AppCompatActivity() {
             changeIconTintToWhite(this, binding.imageMic)
             changeIconTintToWhite(this, binding.imageListItem)
             Utils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.app_background_dark))
-            parentView.setBackgroundTintList(
-                ColorStateList.valueOf(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.app_background_dark
-                    )
+            parentView.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.app_background_dark
                 )
             )
         } else {
@@ -309,12 +307,10 @@ class ComponentListActivity : AppCompatActivity() {
             changeIconTintToBlack(this, binding.imageMic)
             changeIconTintToBlack(this, binding.imageListItem)
             Utils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.app_background))
-            parentView.setBackgroundTintList(
-                ColorStateList.valueOf(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.app_background
-                    )
+            parentView.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.app_background
                 )
             )
         }

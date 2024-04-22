@@ -88,9 +88,23 @@ class MainActivity : AppCompatActivity() {
             login("superhero4")
         }
         if (Utils.isDarkMode(this)) {
-            ivLogo.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white)))
+            ivLogo.setImageTintList(
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                )
+            )
         } else {
-            ivLogo.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(this, com.cometchat.chatuikit.R.color.cometchat_primary_text_color)))
+            ivLogo.setImageTintList(
+                ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        this,
+                        com.cometchat.chatuikit.R.color.cometchat_primary_text_color
+                    )
+                )
+            )
         }
         setUpUI()
     }
@@ -112,18 +126,21 @@ class MainActivity : AppCompatActivity() {
     private fun setUpUI() {
         if (isNightMode(this)) {
             Utils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.app_background_dark))
-            parentView.setBackgroundTintList(
-                ColorStateList.valueOf(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.app_background_dark
-                    )
+            parentView.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.app_background_dark
                 )
             )
             tvCometChat.setTextColor(ContextCompat.getColor(this, R.color.app_background))
         } else {
             Utils.setStatusBarColor(this, ContextCompat.getColor(this, R.color.app_background))
-            parentView.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.app_background)))
+            parentView.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.app_background
+                )
+            )
             tvCometChat.setTextColor(ContextCompat.getColor(this, R.color.app_background_dark))
         }
     }

@@ -106,18 +106,21 @@ class CreateUserActivity : AppCompatActivity() {
             changeTextColorToWhite(this, binding.tvDes2)
             uid.setTextColor(ContextCompat.getColor(this, R.color.white))
             name.setTextColor(ContextCompat.getColor(this, R.color.white))
-            parentView.setBackgroundTintList(
-                ColorStateList.valueOf(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.app_background_dark
-                    )
+            parentView.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.app_background_dark
                 )
             )
         } else {
             changeTextColorToBlack(this, binding.tvTitle)
             changeTextColorToBlack(this, binding.tvDes2)
-            parentView.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.app_background)))
+            parentView.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.app_background
+                )
+            )
         }
     }
 }
